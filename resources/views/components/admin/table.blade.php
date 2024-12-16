@@ -46,6 +46,8 @@
                                                     @if ($key == 'thumbnail' || $key == 'flag' || $key == 'image')
                                                         <img src="{{ asset('storage/' . $value->image) }}"
                                                             alt="item image" height="40px" width="auto">
+                                                           {{-- <img src="{{ route('image.show', ['filename' => basename($value->image)]) }}" alt="Image" height="40px" width="auto"> --}}
+                                                            {{-- this will hit the image route and is image will only be displayed to the authenticated user, if the user is not authenticated then it will throw 403 error --}}
                                                     @elseif($key == 'icon')
                                                         <img src="{{ asset('storage/' . $value->icon) }}"
                                                             alt="item image">

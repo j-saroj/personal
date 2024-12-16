@@ -22,9 +22,35 @@
 }
 
 .team .team-member .member-img {
-  position: relative;
-  overflow: hidden;
+  /* position: relative;
+  overflow: hidden; */
+  height: 300px;
+    width: 100%;
 }
+.member-info p{
+    margin:0px;
+    padding:0px;
+}
+
+@media (max-width: 1200px) {
+  .team .team-member {
+    margin-bottom: 30px;
+  }
+  .team .team-member .member-img {
+    height: 200px;
+  }
+}
+@media (max-width: 992px) {
+  .team .team-member .member-img {
+    height: 250px;
+  }
+}
+@media (max-width: 768px) {
+  .team .team-member .member-img {
+    height: 350px;
+  }
+}
+
 </style>
 <div>
     <!-- The only way to do great work is to love what you do. - Steve Jobs -->
@@ -49,7 +75,7 @@
               <div class="team-member">
                 <div class="member-img">
                   <img
-                    src="{{ asset('storage/'. $team->image) }}"
+                    src="{{ asset('storage/'. $team->image) }}" height="500px;" width="100%"
                     class="img-fluid"
                     alt=""
                   />

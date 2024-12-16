@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BusinessMail;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Profile;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMail;
+
 
 class ContactController extends Controller
 {
@@ -32,6 +36,7 @@ class ContactController extends Controller
         $contact->subject=$request->subject;
         $contact->message=$request->message;
         $contact->save();
+        Mail::to($request->email)->queue(new BusinessMail($contact));
         return redirect()->route('contact');
 
     }

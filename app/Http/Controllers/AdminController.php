@@ -318,7 +318,13 @@ class AdminController extends Controller
             }
             $imagePath = request('image')->store('images', 'public');
 
+// This is for secured images which will not be accessible by the public and only by the authenticated users
+//             $imagePath = $request->file('image')->store('private/images');
             $team->image = $imagePath;
+
+
+
+
 
         }
         $team->name = request('name');

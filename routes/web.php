@@ -9,6 +9,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\OurvaluesController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\SecureImageController;
+use App\Jobs\TranslateJob;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -20,6 +22,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//this route is for showing the image to the authenticated user, if the user is not authenticated, it will return 403 error
+// Route::get('private/images/{filename}', [SecureImageController::class, 'showImage'])->name('image.show');
+Route::get('/testjob', function (){
+    TranslateJob::dispatch();
+    // TranslateJob::dispatch()->delay(now()->addSeconds(5));
+    // yaha nira dherai long kaam x vaney dispathch garne ani tyo kaam garna lai handle function maa jaanxa
+    // yesto garesi user lai wait gari rakhn pardaina backend maa kaam hudai garxa user laai arkai route maa return garidiney
+    return 'Job dispatched';
+});
+git 
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'receive'])->name('contact');
